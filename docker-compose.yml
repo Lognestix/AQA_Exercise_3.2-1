@@ -3,7 +3,7 @@ services:
   mysqldb:
     image: mysql:8.0
     volumes:
-      - ./src/test/resources:/var/lib/mysql
+      - ./src/test/resources:/docker-entrypoint-initdb.d
     ports:
       - '3306:3306'
     environment:
