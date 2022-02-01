@@ -26,12 +26,20 @@ public class LoginPage {
     passwordField.sendKeys(Keys.DELETE);
   }
 
-  public LoginPage InvalidPassword(String login, String password) {
+  public LoginPage invalidPassword(String login, String password) {
     fieldClearing();
     loginField.setValue(login);
     passwordField.setValue(password);
     loginButton.click();
     error.shouldBe(Condition.visible);
+    return new LoginPage();
+  }
+
+  public LoginPage tripleInvalidPassword(String login, String password) {
+    for (int cycle = 0; cycle < 3; cycle++) {
+      invalidPassword(login, password);
+    }
+    loginButton.shouldBe(Condition.disabled);
     return new LoginPage();
   }
 }
